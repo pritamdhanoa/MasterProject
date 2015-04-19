@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.yaxim.androidclient"
+    android:versionCode="1"
+    android:versionName="1" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application
+        android:name="org.yaxim.androidclient.YaximApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/YaximDarkTheme" >
+        <activity
+            android:name="org.yaxim.androidclient.MainWindow"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter
+                android:icon="@drawable/icon"
+                android:label="@string/app_name" >
+                <action android:name="android.intent.action.SEND" >
+                </action>
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
+
+                <data android:mimeType="text/*" >
+                </data>
+            </intent-filter>
+            <intent-filter
+                android:icon="@drawable/icon"
+                android:label="@string/app_name" >
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="jabber"
+                    android:scheme="imto" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".chat.ChatWindow"
+            android:alwaysRetainTaskState="true"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".preferences.MainPrefs"
+            android:label="@string/Menu_Settings" >
+        </activity>
+        <activity
+            android:name=".preferences.AccountPrefs"
+            android:label="@string/account_settings_title" >
+        </activity>
+
+        <service android:name=".service.XMPPService" >
+            <intent-filter>
+                <action android:name="de.hdmstuttgart.yaxim.XMPPSERVICE" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".service.YaximBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name=".data.ChatProvider"
+            android:authorities="org.yaxim.androidclient.provider.Chats" />
+        <provider
+            android:name=".data.RosterProvider"
+            android:authorities="org.yaxim.androidclient.provider.Roster" />
+
+        <activity android:name="de.duenndns.ssl.MemorizingActivity" />
+    </application>
+
+</manifest>
