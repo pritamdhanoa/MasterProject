@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/account_settings_title" >
+
+        <PreferenceScreen
+            android:summary=""
+            android:title="@string/Menu_AccSettings" >
+
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="org.yaxim.androidclient.preferences.AccountPrefs"
+                android:targetPackage="org.yaxim.androidclient" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preftitle_notify" >
+
+        <CheckBoxPreference
+            android:id="@+id/led"
+            android:defaultValue="true"
+            android:key="led"
+            android:summary="@string/led_summ"
+            android:title="@string/led_title" />
+
+        <ListPreference
+            android:id="@+id/vibration"
+            android:defaultValue="SYSTEM"
+            android:entries="@array/vibr_values_displayed"
+            android:entryValues="@array/vibr_values"
+            android:key="vibration_list"
+            android:summary="@string/vibr_summ"
+            android:title="@string/vibr_title" />
+
+        <RingtonePreference
+            android:id="@+id/ringtone"
+            android:key="ringtone"
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:showSilent="true"
+            android:summary="@string/ringtone_summ"
+            android:title="@string/ringtone_title" />
+
+        <CheckBoxPreference
+            android:id="@+id/ticker"
+            android:defaultValue="true"
+            android:key="ticker"
+            android:summary="@string/ticker_summ"
+            android:title="@string/ticker_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preftitle_boot" >
+
+        <CheckBoxPreference
+            android:id="@+id/showOffline"
+            android:defaultValue="true"
+            android:key="showOffline"
+            android:summary="@string/showOffline_summ"
+            android:title="@string/showOffline_title" />
+
+        <CheckBoxPreference
+            android:id="@+id/foregroundService"
+            android:defaultValue="true"
+            android:key="foregroundService"
+            android:summary="@string/foregroundService_summ"
+            android:title="@string/foregroundService_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preftitle_app" >
+
+        <ListPreference
+            android:defaultValue="dark"
+            android:entries="@array/pref_theme_entries"
+            android:entryValues="@array/pref_theme_values"
+            android:key="theme"
+            android:title="@string/pref_theme" >
+        </ListPreference>
+
+        <ListPreference
+            android:id="@+id/setSizeChat"
+            android:defaultValue="18"
+            android:dialogTitle="@string/FontChat_dialog"
+            android:entries="@array/fontSizesChat"
+            android:entryValues="@array/fontSizesChatCodes"
+            android:key="setSizeChat"
+            android:summary="@string/FontChat_summ"
+            android:title="@string/FontChat_title" />
+
+        <CheckBoxPreference
+            android:id="@+id/enableGroups"
+            android:defaultValue="true"
+            android:key="enableGroups"
+            android:summary="@string/enableGroups_summ"
+            android:title="@string/enableGroups_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preftitle_debug" >
+
+        <CheckBoxPreference
+            android:id="@+id/smackdebug"
+            android:defaultValue="false"
+            android:key="smackdebug"
+            android:summary="@string/smackdebug_summ"
+            android:title="@string/smackdebug_title" />
+
+        <CheckBoxPreference
+            android:id="@+id/reportcrash"
+            android:defaultValue="false"
+            android:key="reportcrash"
+            android:summary="@string/reportcrash_summ"
+            android:title="@string/reportcrash_title" />
+    </PreferenceCategory>
+    <!--
+    <PreferenceCategory android:title="@string/preftitle_app">
+		<ListPreference
+			android:id="@+id/setSizeClist"
+			android:key="setSizeClist"
+			android:title="@string/FontRost_title"
+			android:summary="@string/FontChat_summ"
+			android:entries="@array/fontSizesClist"
+			android:entryValues="@array/fontSizesClistCodes"
+			android:dialogTitle="@string/FontChat_dialog"
+		/>
+	</PreferenceCategory>
+    -->
+
+</PreferenceScreen>
