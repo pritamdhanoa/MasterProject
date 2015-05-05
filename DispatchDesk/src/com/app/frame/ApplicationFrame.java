@@ -155,7 +155,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 
 		jPanel6.setBackground(new Color(135, 206, 235));
 
-		driverJTable.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
+		driverJTable.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 		driverJTable.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] {
 
@@ -255,7 +255,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 
 		jPanel4.setBackground(new Color(135, 206, 235));
 
-		loadJTable.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
+		loadJTable.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 		loadJTable.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] {
 
@@ -277,13 +277,13 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 		});
 		jScrollPane3.setViewportView(loadJTable);
 		if (loadJTable.getColumnModel().getColumnCount() > 0) {
-			loadJTable.getColumnModel().getColumn(1).setPreferredWidth(150);
-			loadJTable.getColumnModel().getColumn(2).setPreferredWidth(150);
-			loadJTable.getColumnModel().getColumn(3).setPreferredWidth(150);
-			loadJTable.getColumnModel().getColumn(4).setPreferredWidth(150);
-			loadJTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+			loadJTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+			loadJTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+			loadJTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+			loadJTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+			loadJTable.getColumnModel().getColumn(5).setPreferredWidth(100);
 			loadJTable.getColumnModel().getColumn(6).setPreferredWidth(100);
-			loadJTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+			loadJTable.getColumnModel().getColumn(7).setPreferredWidth(100);
 			loadJTable.getColumnModel().getColumn(8).setPreferredWidth(100);
 			loadJTable.getColumnModel().getColumn(9).setPreferredWidth(100);
 		}
@@ -355,7 +355,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 
 		jPanel9.setBackground(new Color(135, 206, 235));
 
-		userJList.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+		userJList.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 		userJList
 				.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 					public void valueChanged(
@@ -683,24 +683,20 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 					AppLog.success(driver_assigned, driver_assigned);
 					AppLog.success(driver_buddy_name, driver_buddy_name);
 
-					String msg2 = " Company Name: "
-							+ loadJTable.getValueAt(row, 1).toString();
-					String msg3 = " Company ContactNo: "
-							+ loadJTable.getValueAt(row, 2).toString();
 					String msg4 = " Pickup Info: "
 							+ loadJTable.getValueAt(row, 3).toString();
-					String msg5 = " Delivery Info: "
+					String msg5 = "Delivery Info: "
 							+ loadJTable.getValueAt(row, 4).toString();
-					String msg7 = " Status: "
-							+ loadJTable.getValueAt(row, 6).toString();
-
+					
 					AppLog.success("msg4", html2text(msg4));
 
-					String buddy_to_message = msg2 + msg3 + html2text(msg4)
-							+ html2text(msg5) + msg7;
+					String buddy_to_message1 = html2text(msg4);
+					String buddy_to_message2 = html2text(msg5);
 					AppLog.success(driver_buddy_name, driver_buddy_name);
 
-					XmppManager.sendMessage(buddy_to_message, driver_buddy_name
+					XmppManager.sendMessage(buddy_to_message1, driver_buddy_name
+							+ "@localhost");
+					XmppManager.sendMessage(buddy_to_message2, driver_buddy_name
 							+ "@localhost");
 					Utils.infoBox("Message Sent Successfully", "");
 				}
@@ -921,11 +917,9 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 								+ loadArrayList.get(i)
 										.getPickup_street_address() + "<br/>"
 								+ loadArrayList.get(i).getPickup_city()
-								+ "<br />"
-								+ loadArrayList.get(i).getPickup_state()
-								+ "<br/>"
-								+ loadArrayList.get(i).getPickup_zip_code()
-								+ "<br />" + "Pick up on "
+								+ " " + loadArrayList.get(i).getPickup_state()
+								+ " " + loadArrayList.get(i).getPickup_zip_code()
+								+ "<br />" + " on "
 								+ loadArrayList.get(i).getPickup_date()
 								+ "<br/></html>";
 						data[3] = pickup_address;
@@ -938,11 +932,9 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 										.getDelivery_street_address()
 								+ "<br />"
 								+ loadArrayList.get(i).getDelivery_city()
-								+ "<br />"
-								+ loadArrayList.get(i).getDelivery_state()
-								+ "<br />"
-								+ loadArrayList.get(i).getDelivery_zip_code()
-								+ "<br />" + "Del on "
+								+ " " + loadArrayList.get(i).getDelivery_state()
+								+ " " + loadArrayList.get(i).getDelivery_zip_code()
+								+ "<br />" + " on "
 								+ loadArrayList.get(i).getDelivery_date()
 								+ "<br /></html>";
 						data[4] = delivery_address;
@@ -966,7 +958,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 
 					}
 					loadJTable.setModel(loadTableModel);
-					loadJTable.setRowHeight(100);
+					loadJTable.setRowHeight(70);
 				}
 			}
 		} catch (Exception e) {
