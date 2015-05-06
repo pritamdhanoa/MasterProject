@@ -16,9 +16,9 @@
         style="?attr/dialogTextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon"
+        android:drawableLeft="@drawable/ic_launcher"
         android:drawablePadding="10sp"
-        android:drawableStart="@drawable/icon"
+        android:drawableStart="@drawable/ic_launcher"
         android:focusable="true"
         android:padding="10sp"
         android:text="@string/StartupDialog_Summary" />

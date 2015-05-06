@@ -283,5 +283,6 @@
     <string name="mtm_decision_once">Once</string>
     <string name="mtm_decision_abort">Abort</string>
     <string name="mtm_notification">Certificate Verification</string>
+    <string name="Loc">Loc</string>
 
 </resources>

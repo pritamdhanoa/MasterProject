@@ -37,12 +37,15 @@
             android:layout_height="wrap_content"
             android:minWidth="60sp"
             android:text="@android:string/ok" />
+
         <Button
             android:id="@+id/Chat_SendLocButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/sym_action_chat"
             android:minWidth="60sp"
-            android:background="@android:drawable/sym_action_chat" />
+            android:text="@string/Loc" />
+
     </LinearLayout>
 
 </LinearLayout>
