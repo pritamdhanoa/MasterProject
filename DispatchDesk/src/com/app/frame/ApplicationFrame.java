@@ -612,6 +612,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 			// chatUserName);
 			ChatScreen chatScreen = ChatScreen.getInstance(
 					ApplicationFrame.this, chatUserName);
+			chatScreen.setLocationRelativeTo(ApplicationFrame.this);
 			chatScreen.setVisible(true);
 		}
 	}
@@ -716,6 +717,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 					EditLoad el = new EditLoad(ApplicationFrame.this, true,
 							DbConnectionManager.getConnection(),
 							Integer.parseInt(id));
+					el.setLocationRelativeTo(ApplicationFrame.this);
 					el.setVisible(true);
 				}
 			} catch (ClassNotFoundException ex) {
@@ -780,6 +782,7 @@ public class ApplicationFrame extends javax.swing.JFrame implements
 						EditDriver ed = new EditDriver(ApplicationFrame.this,
 								true, DbConnectionManager.getConnection(),
 								Integer.parseInt(driverId));
+						ed.setLocationRelativeTo(ApplicationFrame.this);
 						ed.setVisible(true);
 					}
 				} catch (ClassNotFoundException ex) {
