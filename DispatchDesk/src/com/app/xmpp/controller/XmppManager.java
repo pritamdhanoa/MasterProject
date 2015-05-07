@@ -5,17 +5,23 @@
  */
 package com.app.xmpp.controller;
 
+import java.util.Collection;
+
 import com.app.log.AppLog;
 import com.app.utils.ConstantOfApp;
+
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.MessageListener;
+import org.jivesoftware.smack.Roster;
+import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.RosterPacket.ItemStatus;
 
 public class XmppManager {
 
@@ -74,4 +80,16 @@ public class XmppManager {
             AppLog.success("XmppManager:Received Message===body", body);
         }
     }
+    
+    public String printRoster(String user) throws Exception {
+    	String status = null;
+    	Roster roster = connection.getRoster();
+    	Collection<RosterEntry> entries = roster.getEntries(); 
+    	for (RosterEntry entry : entries) {
+    		if(entry.getName() == user)
+    				status = entry.getStatus().toString();
+    	}
+    	return status;
+    }
+
 }

@@ -40,10 +40,14 @@ import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.RosterPacket.ItemStatus;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 
 public class ChatScreen extends javax.swing.JDialog {
 
@@ -63,6 +67,7 @@ public class ChatScreen extends javax.swing.JDialog {
 		if (chatScreen == null) {
 			chatScreen = new ChatScreen(parent, true, chatUserName);
 		}
+		lblchatname.setText(chatUserName);
 		chatScreen.setBuddyJID(chatUserName + "@localhost");
 		return chatScreen;
 	}
@@ -76,6 +81,10 @@ public class ChatScreen extends javax.swing.JDialog {
 		initComponents();
 		recv.setEditorKit(new HTMLEditorKit());
 		recv.setEditable(false);
+		
+		lblchatname = new JLabel(chat_username);
+		jScrollPane1.setColumnHeaderView(lblchatname);
+		
 		buddyJID = chat_username + "@localhost";
 	}
 
@@ -132,8 +141,8 @@ public class ChatScreen extends javax.swing.JDialog {
 					.addContainerGap(186, Short.MAX_VALUE))
 		);
 		jPanel2Layout.setVerticalGroup(
-			jPanel2Layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+			jPanel2Layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(jPanel2Layout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(jLabel1)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -623,6 +632,8 @@ public class ChatScreen extends javax.swing.JDialog {
 	}
 
 	int counter = 0;
+	private static JLabel lblchatname;
+	private JLabel lblStatus;
 
 	private void keyPressListener(KeyEvent ke) {
 
