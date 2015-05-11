@@ -69,6 +69,29 @@ public class ChatScreen extends javax.swing.JDialog {
 		}
 		lblchatname.setText(chatUserName);
 		chatScreen.setBuddyJID(chatUserName + "@localhost");
+		
+		try {
+			XMPPConnection connection = XmppManager.getConnection();
+			if (connection != null) {
+				Chat chat = connection.getChatManager().createChat(
+						chatUserName + "@localhost", new MessageListener() {
+
+							@Override
+							public void processMessage(Chat chat,
+									Message message) {
+
+								String from = message.getFrom().split("@")[0];
+								String body = message.getBody();
+								Utils.infoBox("Message Received: " + from, "Received");
+								appendData(from, body, false);
+							}
+						});
+				}
+		} catch (XMPPException ex) {
+			Logger.getLogger(ChatScreen.class.getName()).log(Level.SEVERE,
+					null, ex);
+		}
+		
 		return chatScreen;
 	}
 
@@ -360,7 +383,7 @@ public class ChatScreen extends javax.swing.JDialog {
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private javax.swing.JEditorPane recv;
+	private static javax.swing.JEditorPane recv;
 	private javax.swing.JButton send;
 	private javax.swing.JTextArea type;
 
@@ -383,8 +406,9 @@ public class ChatScreen extends javax.swing.JDialog {
 								public void processMessage(Chat chat,
 										Message message) {
 
-									String from = message.getFrom();
+									String from = message.getFrom().split("@")[0];
 									String body = message.getBody();
+									Utils.infoBox("Message Received: " + from, "Received");
 									appendData(from, body, false);
 								}
 							});
@@ -405,7 +429,7 @@ public class ChatScreen extends javax.swing.JDialog {
 	 * @param str
 	 * @param received
 	 */
-	private void appendData(String user, String str, boolean received) {
+	private static void appendData(String user, String str, boolean received) {
 		StringBuffer bfr = new StringBuffer(str);
 
 		while (str.indexOf("X(") != -1) {
@@ -631,7 +655,7 @@ public class ChatScreen extends javax.swing.JDialog {
 		}
 	}
 
-	int counter = 0;
+	static int counter = 0;
 	private static JLabel lblchatname;
 	private JLabel lblStatus;
 
